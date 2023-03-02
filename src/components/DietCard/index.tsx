@@ -9,7 +9,7 @@ import {
 } from "./styles";
 
 interface DietCardProps {
-  level: "high" | "low";
+  level: "high" | "low" | "regular";
   percent: string;
 }
 
@@ -19,7 +19,7 @@ export function DietCard({ level, percent }: DietCardProps) {
     <DietCardContainer level={level} percent={percent}>
       <DietCardHeader>
         <DietCardIcon
-          name={level === "high" ? "arrow-up-right" : "arrow-down-left"}
+          name="arrow-up-right"
           color={level === "high" ? colors.green_dark : colors.red_dark}
         />
       </DietCardHeader>

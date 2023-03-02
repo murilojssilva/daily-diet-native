@@ -10,6 +10,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
 import { Home } from "./src/screens/Home";
+import { Statistics } from "./src/screens/Statistics";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,7 +25,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Statistics />
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
