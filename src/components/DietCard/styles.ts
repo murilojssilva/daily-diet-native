@@ -4,10 +4,10 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 interface DietCardContainerProps {
   level: "high" | "low" | "regular";
-  percent: string;
+  percent: number;
 }
 
-export const DietCardContainer = styled.View<DietCardContainerProps>`
+export const DietCardContainer = styled.TouchableOpacity<DietCardContainerProps>`
   padding: 20px 10px;
   margin: 10px;
   background-color: ${(props) =>

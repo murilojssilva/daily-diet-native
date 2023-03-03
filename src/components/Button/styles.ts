@@ -3,11 +3,11 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Feather } from "@expo/vector-icons";
 
 export const ButtonContainer = styled.TouchableOpacity`
-  height: 50px;
   border-radius: 8px;
-  margin-top: 20px;
+
   align-items: center;
   justify-content: center;
+  padding: 15px;
   gap: 10px;
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.gray_600};

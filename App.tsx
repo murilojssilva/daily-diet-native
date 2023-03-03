@@ -3,20 +3,19 @@ import AppLoading from "expo-app-loading";
 
 import {
   useFonts,
-  Roboto_400Regular,
-  Roboto_500Medium,
-  Roboto_700Bold,
-} from "@expo-google-fonts/roboto";
+  NunitoSans_400Regular,
+  NunitoSans_600SemiBold,
+  NunitoSans_700Bold,
+} from "@expo-google-fonts/nunito-sans";
 import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
-import { Home } from "./src/screens/Home";
-import { Statistics } from "./src/screens/Statistics";
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Roboto_700Bold,
+    NunitoSans_400Regular,
+    NunitoSans_600SemiBold,
+    NunitoSans_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -25,12 +24,12 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Statistics />
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
         translucent
       />
+      <Routes />
     </ThemeProvider>
   );
 }

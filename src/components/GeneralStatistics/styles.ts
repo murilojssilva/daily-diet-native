@@ -5,6 +5,7 @@ export const GeneralStatisticsContainer = styled.View`
   flex: 1;
   padding: 20px;
   border-radius: 20px;
+  background-color: ${(props) => props.theme.colors.gray_100};
 `;
 
 export const GeneralStatisticsTitle = styled.Text`

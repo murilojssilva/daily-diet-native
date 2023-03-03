@@ -10,7 +10,7 @@ interface ButtonProps extends TouchableOpacityProps {
 export function Button({ text, icon, ...rest }: ButtonProps) {
   return (
     <ButtonContainer {...rest}>
-      <ButtonIcon name={`${icon}`} />
+      <ButtonIcon name={icon} />
       <ButtonText>{text}</ButtonText>
     </ButtonContainer>
   );

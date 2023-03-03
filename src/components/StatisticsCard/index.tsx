@@ -1,4 +1,3 @@
-import { useTheme } from "styled-components";
 import {
   StatisticsCardContainer,
   StatisticsCardContent,

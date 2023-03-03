@@ -1,6 +1,7 @@
 export type FoodStorageDTO = {
-  text: string;
-  type: "healthy" | "not_healthy";
-  date: Date;
+  name: string;
+  description: string;
+  type: "healthy" | "unhealthy";
+  date: string;
   hour: string;
 };

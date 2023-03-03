@@ -1,4 +1,4 @@
-import { useTheme } from "styled-components";
+import { useTheme } from "styled-components/native";
 import {
   DietCardContainer,
   DietCardContent,
@@ -7,16 +7,27 @@ import {
   DietCardPercent,
   DietCardText,
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 interface DietCardProps {
   level: "high" | "low" | "regular";
-  percent: string;
+  percent: number;
 }
 
 export function DietCard({ level, percent }: DietCardProps) {
   const { colors } = useTheme();
+  const navigation = useNavigation();
+
+  function handleOpenNewScreen() {
+    navigation.navigate("statistics");
+  }
+
   return (
-    <DietCardContainer level={level} percent={percent}>
+    <DietCardContainer
+      level={level}
+      percent={percent}
+      onPress={handleOpenNewScreen}
+    >
       <DietCardHeader>
         <DietCardIcon
           name="arrow-up-right"

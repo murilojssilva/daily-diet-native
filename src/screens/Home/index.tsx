@@ -4,20 +4,12 @@ import { Header } from "../../components/Header";
 import { HomeContainer } from "./styles";
 import { NewFood } from "../../components/NewFood";
 import { FoodList } from "../../components/FoodList";
-import { useTheme } from "styled-components/native";
 import { foodsGetAll } from "../../storage/food/foodsGetAll";
+import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
 
 export function Home() {
-  const [percent, setPercent] = useState("70");
-  const [foods, setFoods] = useState<
-    {
-      text: string;
-      type: "healthy" | "not_healthy";
-      date: Date;
-      hour: string;
-    }[]
-  >([]);
-  const { colors } = useTheme();
+  const [percent, setPercent] = useState(0);
+  const [foods, setFoods] = useState<FoodStorageDTO[]>([]);
 
   useLayoutEffect(() => {
     async function fetchFoods() {
@@ -25,10 +17,9 @@ export function Home() {
         const data = await foodsGetAll();
         setFoods(data);
         setPercent(
-          String(
-            foods.filter((food) => food.type === "healthy").length /
-              foods.length
-          )
+          100 *
+            (foods.filter((food) => food.type === "healthy").length /
+              foods.length)
         );
       } catch (error) {
         console.log(error);
@@ -40,7 +31,7 @@ export function Home() {
   return (
     <HomeContainer>
       <Header />
-      <DietCard percent={percent} level={percent >= "70" ? "high" : "low"} />
+      <DietCard percent={percent} level={percent >= 70 ? "high" : "low"} />
       <NewFood />
       <FoodList />
     </HomeContainer>

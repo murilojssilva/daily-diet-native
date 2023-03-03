@@ -1,27 +1,11 @@
-import { useTheme } from "styled-components/native";
-import {
-  FoodCard,
-  FoodContent,
-  FoodDay,
-  FoodDivider,
-  FoodListContainer,
-  FoodTime,
-  FoodTitle,
-  FoodType,
-} from "./styles";
+import { FoodListContainer, FoodListContent } from "./styles";
 import { useLayoutEffect, useState } from "react";
 import { foodsGetAll } from "../../storage/food/foodsGetAll";
+import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
+import { FoodCard } from "../FoodCard";
 
 export function FoodList() {
-  const [foods, setFoods] = useState<
-    {
-      text: string;
-      type: "healthy" | "not_healthy";
-      date: Date;
-      hour: string;
-    }[]
-  >([]);
-  const { colors } = useTheme();
+  const [foods, setFoods] = useState<FoodStorageDTO[]>([]);
 
   useLayoutEffect(() => {
     async function fetchFoods() {
@@ -34,25 +18,13 @@ export function FoodList() {
     }
     fetchFoods();
   }, [foods]);
+
   return (
     <FoodListContainer>
-      {foods.map((food) => (
-        <>
-          <FoodDay>{food.date}</FoodDay>
-          <FoodCard>
-            <FoodContent>
-              <FoodTime>{food.hour}</FoodTime>
-              <FoodDivider />
-              <FoodTitle>{food.text}</FoodTitle>
-            </FoodContent>
-            <FoodType
-              color={
-                food.type === "healthy" ? colors.green_mid : colors.red_mid
-              }
-            />
-          </FoodCard>
-        </>
-      ))}
+      <FoodListContent
+        data={foods}
+        renderItem={({ item }: any) => <FoodCard key={item} data={item} />}
+      />
     </FoodListContainer>
   );
 }

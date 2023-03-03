@@ -1,4 +1,5 @@
 import { RFValue } from "react-native-responsive-fontsize";
+import { Feather } from "@expo/vector-icons";
 import styled from "styled-components/native";
 
 interface StatisticsHeaderContainerProps {
@@ -17,6 +18,15 @@ export const StatisticsHeaderContainer = styled.View<StatisticsHeaderContainerPr
 export const StatisticsHeaderPercent = styled.Text`
   font-size: ${RFValue(30)}px;
   font-family: ${(props) => props.theme.fonts.bold};
+`;
+
+export const StatisticsHeaderButton = styled.TouchableOpacity`
+  align-self: flex-start;
+`;
+
+export const StatisticsHeaderIcon = styled(Feather)`
+  align-self: flex-end;
+  font-size: ${RFValue(20)}px;
 `;
 
 export const StatisticsHeaderText = styled.Text`
