@@ -6,6 +6,6 @@ export const NewFoodContainer = styled.View`
 `;
 
 export const NewFoodTitle = styled.Text`
-  font-family: ${(props) => props.theme.fonts.regular};
+  font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${RFValue(16)}px;
 `;

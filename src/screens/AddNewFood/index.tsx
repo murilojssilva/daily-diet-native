@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { AddNewFoodButtonType } from "../../components/AddNewFoodButtonType";
+import { ButtonType } from "../../components/ButtonType";
 import { Button } from "../../components/Button";
 import {
   AddNewFoodContainer,
@@ -9,14 +10,15 @@ import {
   AddNewFoodHeader,
   AddNewFoodHeaderIcon,
   AddNewFoodHeaderTitle,
-  AddNewFoodInput,
-  AddNewFoodInputDivider,
   AddNewFoodItem,
-  AddNewFoodTextarea,
   AddNewFoodTitle,
 } from "./styles";
-import { useState } from "react";
+import uuid from "react-native-uuid";
+
 import { foodCreate } from "../../storage/food/foodCreate";
+import { Textarea } from "../../components/Textarea";
+import { Input } from "../../components/Input";
+import { InputDivider } from "../../components/InputDivider";
 
 export function AddNewFood() {
   const [name, setName] = useState("");
@@ -32,12 +34,24 @@ export function AddNewFood() {
 
   async function handleAddFood() {
     try {
-      await foodCreate({ name, description, date, hour, type });
+      await foodCreate({
+        id: String(uuid.v4()),
+        name,
+        description,
+        date,
+        hour,
+        type,
+      });
       navigation.navigate("feedback", { type });
     } catch (error) {
       console.log(error);
     }
   }
+
+  function handleFoodType(type: "healthy" | "unhealthy") {
+    setType(type);
+  }
+
   return (
     <AddNewFoodContainer>
       <AddNewFoodHeader>
@@ -49,19 +63,16 @@ export function AddNewFood() {
         <AddNewFoodForm>
           <AddNewFoodItem>
             <AddNewFoodTitle>Nome</AddNewFoodTitle>
-            <AddNewFoodInput onChangeText={setName} value={name} />
+            <Input onChangeText={setName} value={name} />
           </AddNewFoodItem>
           <AddNewFoodItem>
             <AddNewFoodTitle>Descrição</AddNewFoodTitle>
-            <AddNewFoodTextarea
-              onChangeText={setDescription}
-              value={description}
-            />
+            <Textarea onChangeText={setDescription} value={description} />
           </AddNewFoodItem>
           <AddNewFoodDivider>
             <AddNewFoodItem>
               <AddNewFoodTitle>Data</AddNewFoodTitle>
-              <AddNewFoodInputDivider
+              <InputDivider
                 onChangeText={setDate}
                 value={date}
                 placeholder="00/00/0000"
@@ -69,7 +80,7 @@ export function AddNewFood() {
             </AddNewFoodItem>
             <AddNewFoodItem>
               <AddNewFoodTitle>Hora</AddNewFoodTitle>
-              <AddNewFoodInputDivider
+              <InputDivider
                 onChangeText={setHour}
                 value={hour}
                 placeholder="00:00"
@@ -79,8 +90,18 @@ export function AddNewFood() {
           <AddNewFoodItem>
             <AddNewFoodTitle>Está dentro da dieta?</AddNewFoodTitle>
             <AddNewFoodDivider>
-              <AddNewFoodButtonType type="healthy" text="Sim" />
-              <AddNewFoodButtonType type="unhealthy" text="Não" />
+              <ButtonType
+                type="healthy"
+                onPress={() => handleFoodType("healthy")}
+                text="Sim"
+                isActive={type === "healthy"}
+              />
+              <ButtonType
+                type="unhealthy"
+                onPress={() => handleFoodType("unhealthy")}
+                text="Não"
+                isActive={type === "unhealthy"}
+              />
             </AddNewFoodDivider>
           </AddNewFoodItem>
         </AddNewFoodForm>

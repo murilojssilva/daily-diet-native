@@ -3,6 +3,7 @@ import { useLayoutEffect, useState } from "react";
 import { foodsGetAll } from "../../storage/food/foodsGetAll";
 import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
 import { FoodCard } from "../FoodCard";
+import { EmptyFoodList } from "../EmptyFoodList";
 
 export function FoodList() {
   const [foods, setFoods] = useState<FoodStorageDTO[]>([]);
@@ -24,6 +25,7 @@ export function FoodList() {
       <FoodListContent
         data={foods}
         renderItem={({ item }: any) => <FoodCard key={item} data={item} />}
+        ListEmptyComponent={<EmptyFoodList />}
       />
     </FoodListContainer>
   );

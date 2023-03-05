@@ -16,6 +16,8 @@ export const DetailsContent = styled.View`
   background-color: ${(props) => props.theme.colors.gray_200};
   margin-top: -20px;
   border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const DetailsName = styled.Text`
@@ -50,6 +52,7 @@ export const DetailsTypeTag = styled.View`
   padding: 10px 20px;
   background-color: ${(props) => props.theme.colors.gray_300};
   border-radius: 100px;
+  width: 50%;
 `;
 
 export const DetailsTypeIcon = styled.View<DetailsTypeIconProps>`

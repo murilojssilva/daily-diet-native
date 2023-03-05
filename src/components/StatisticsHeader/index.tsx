@@ -28,7 +28,9 @@ export function StatisticsHeader({
           color={percent >= 70 ? colors.green_dark : colors.red_dark}
         />
       </StatisticsHeaderButton>
-      <StatisticsHeaderPercent>{percent}%</StatisticsHeaderPercent>
+      <StatisticsHeaderPercent>
+        {String(percent) === "NaN" ? "0" : percent}%
+      </StatisticsHeaderPercent>
       <StatisticsHeaderText>das refeições dentro da dieta</StatisticsHeaderText>
     </StatisticsHeaderContainer>
   );

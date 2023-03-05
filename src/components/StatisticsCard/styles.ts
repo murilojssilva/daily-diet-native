@@ -1,13 +1,14 @@
 import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Dimensions } from "react-native";
 
 interface StatisticsCardContainerProps {
   level: "high" | "low" | "regular";
-  percent: string;
+  percent: number;
 }
 
 export const StatisticsCardContainer = styled.View<StatisticsCardContainerProps>`
-  padding: 20px 10px;
+  padding: 20px;
   margin: 10px;
   background-color: ${(props) =>
     props.level === "high"
@@ -15,7 +16,6 @@ export const StatisticsCardContainer = styled.View<StatisticsCardContainerProps>
       : props.level === "low"
       ? props.theme.colors.red_light
       : props.theme.colors.gray_200};
-
   border-radius: 6px;
 `;
 
@@ -30,7 +30,7 @@ export const StatisticsCardPercent = styled.Text`
 `;
 
 export const StatisticsCardText = styled.Text`
-  color: ${(props) => props.theme.colors.gray_600};
+  color: ${(props) => props.theme.colors.gray_700};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: ${RFValue(12)}px;
   text-align: center;

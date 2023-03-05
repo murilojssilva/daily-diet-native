@@ -1,5 +1,4 @@
-import { useLayoutEffect, useState } from "react";
-import { DietCard } from "../DietCard";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { StatisticsCard } from "../StatisticsCard";
 import {
   GeneralStatisticsCardContent,
@@ -12,15 +11,38 @@ import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
 export function GeneralStatistics() {
   const [foods, setFoods] = useState<FoodStorageDTO[]>([]);
 
-  useLayoutEffect(() => {
-    async function fetchFoods() {
-      try {
-        const data = await foodsGetAll();
-        setFoods(data);
-      } catch (error) {
-        console.log(error);
+  const [bestSequenceInDiet, setBestSequenceInDiet] = useState(0);
+
+  async function fetchFoods() {
+    try {
+      const data = await foodsGetAll();
+      setFoods(data);
+
+      let bestSequence = 0,
+        currentSequence = 0;
+
+      foods.map((food) => {
+        if (food.type === "healthy") {
+          currentSequence++;
+        } else {
+          if (currentSequence > bestSequence) {
+            bestSequence = currentSequence;
+          }
+          currentSequence = 0;
+        }
+      });
+
+      if (currentSequence > bestSequence) {
+        bestSequence = currentSequence;
       }
+
+      setBestSequenceInDiet(bestSequence);
+    } catch (error) {
+      return console.log(error);
     }
+  }
+
+  useLayoutEffect(() => {
     fetchFoods();
   }, [foods]);
 
@@ -28,27 +50,23 @@ export function GeneralStatistics() {
     <GeneralStatisticsContainer>
       <GeneralStatisticsTitle>Estatísticas gerais</GeneralStatisticsTitle>
       <StatisticsCard
-        percent={"10"}
+        percent={bestSequenceInDiet}
         text="melhor sequência de pratos dentro da dieta"
         level="regular"
       />
       <StatisticsCard
-        percent={String(foods.length)}
+        percent={foods.length}
         text="refeições registradas"
         level="regular"
       />
       <GeneralStatisticsCardContent>
         <StatisticsCard
-          percent={String(
-            foods.filter((food) => food.type === "healthy").length
-          )}
+          percent={foods.filter((food) => food.type === "healthy").length}
           text={`refeições dentro da${"\n"}dieta`}
           level="high"
         />
         <StatisticsCard
-          percent={String(
-            foods.filter((food) => food.type === "unhealthy").length
-          )}
+          percent={foods.filter((food) => food.type === "unhealthy").length}
           text={`refeições fora da${"\n"}dieta`}
           level="low"
         />

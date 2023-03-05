@@ -39,6 +39,7 @@ export function FoodCard({ data }: FoodCardProps) {
       <FoodCardContent
         onPress={() =>
           navigation.navigate("details", {
+            id: data.id,
             date: data.date,
             hour: data.hour,
             name: data.name,

@@ -6,6 +6,8 @@ export const GeneralStatisticsContainer = styled.View`
   padding: 20px;
   border-radius: 20px;
   background-color: ${(props) => props.theme.colors.gray_100};
+  border-radius: 20px;
+  margin-top: -20px;
 `;
 
 export const GeneralStatisticsTitle = styled.Text`
@@ -15,8 +17,6 @@ export const GeneralStatisticsTitle = styled.Text`
 `;
 
 export const GeneralStatisticsCardContent = styled.View`
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
 `;

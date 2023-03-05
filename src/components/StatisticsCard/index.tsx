@@ -7,7 +7,7 @@ import {
 
 interface StatisticsCardProps {
   level: "high" | "low" | "regular";
-  percent: string;
+  percent: number;
   text: string;
 }
 

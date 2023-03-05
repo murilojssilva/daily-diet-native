@@ -1,5 +1,9 @@
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "react-native";
 import AppLoading from "expo-app-loading";
+
+SplashScreen.preventAutoHideAsync();
+SplashScreen.hideAsync();
 
 import {
   useFonts,

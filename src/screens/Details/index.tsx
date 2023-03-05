@@ -18,6 +18,8 @@ import {
 } from "./styles";
 import { Button } from "../../components/Button";
 import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
+import { foodRemoveByName } from "../../storage/food/foodRemove";
+import { Alert } from "react-native";
 
 export function Details() {
   const navigation = useNavigation();
@@ -28,6 +30,23 @@ export function Details() {
   const route = useRoute();
   const { date, hour, name, type, description } =
     route.params as FoodStorageDTO;
+
+  async function foodRemove(name: string) {
+    try {
+      await foodRemoveByName(name);
+      navigation.navigate("home");
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Remover tarefa", "Não foi possíver remover a tarefa");
+    }
+  }
+
+  async function handleFoodRemove(name: string) {
+    Alert.alert("Remover", "Deseja realmente excluir o registro da refeição?", [
+      { text: "Cancelar", style: "cancel" },
+      { text: "Sim, excluir", onPress: () => foodRemove(name) },
+    ]);
+  }
 
   return (
     <DetailsContainer>
@@ -60,8 +79,24 @@ export function Details() {
           </DetailsItems>
         </DetailsInfos>
         <DetailsButtonsContainer>
-          <Button text="Editar refeição" icon="edit-3" />
-          <Button text="Excluir refeição" icon="trash-2" />
+          <Button
+            text="Editar refeição"
+            icon="edit-3"
+            onPress={() =>
+              navigation.navigate("edit_food", {
+                date: date,
+                hour: hour,
+                name: name,
+                type: type,
+                description: description,
+              })
+            }
+          />
+          <Button
+            text="Excluir refeição"
+            icon="trash-2"
+            onPress={() => handleFoodRemove(name)}
+          />
         </DetailsButtonsContainer>
       </DetailsContent>
     </DetailsContainer>

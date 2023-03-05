@@ -35,7 +35,9 @@ export function DietCard({ level, percent }: DietCardProps) {
         />
       </DietCardHeader>
       <DietCardContent>
-        <DietCardPercent>{percent}%</DietCardPercent>
+        <DietCardPercent>
+          {String(percent) === "NaN" ? "0" : percent}%
+        </DietCardPercent>
         <DietCardText>das refeições dentro da dieta</DietCardText>
       </DietCardContent>
     </DietCardContainer>
