@@ -1,4 +1,3 @@
-import { useLayoutEffect, useState } from "react";
 import {
   FoodCardContainer,
   FoodCardContent,
@@ -18,20 +17,7 @@ interface FoodCardProps {
 }
 
 export function FoodCard({ data }: FoodCardProps) {
-  const [foods, setFoods] = useState<FoodStorageDTO[]>([]);
   const navigation = useNavigation();
-
-  useLayoutEffect(() => {
-    async function fetchFoods() {
-      try {
-        const data = await foodsGetAll();
-        setFoods(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchFoods();
-  }, [foods]);
 
   return (
     <FoodCardContainer>

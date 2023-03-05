@@ -76,6 +76,7 @@ export function AddNewFood() {
                 onChangeText={setDate}
                 value={date}
                 placeholder="00/00/0000"
+                keyboardType="numeric"
               />
             </AddNewFoodItem>
             <AddNewFoodItem>

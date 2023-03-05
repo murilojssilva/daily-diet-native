@@ -14,6 +14,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
 import { Routes } from "./src/routes";
+import { FoodsProvider } from "./src/contexts/FoodsContexts";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,7 +34,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <FoodsProvider>
+        <Routes />
+      </FoodsProvider>
     </ThemeProvider>
   );
 }
