@@ -9,7 +9,6 @@ import {
   FoodType,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { foodsGetAll } from "../../storage/food/foodsGetAll";
 import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
 
 interface FoodCardProps {
