@@ -8,7 +8,9 @@ export async function foodRemoveByName(id: string) {
   try {
     const storedFoods = await foodsGetAll();
 
-    const foods = storedFoods.filter((food) => food.id !== id);
+    const foods = storedFoods.filter((food) => {
+      food.id !== id;
+    });
 
     await AsyncStorage.setItem(FOOD_COLLECTION, JSON.stringify(foods));
   } catch (error) {

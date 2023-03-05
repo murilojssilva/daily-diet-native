@@ -31,9 +31,9 @@ export function EditFood() {
   const [editHour, setHour] = useState(hour);
   const [editType, setType] = useState<"healthy" | "unhealthy">(type);
 
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   function handleBackHome() {
-    navigation.navigate("details", {
+    navigate("details", {
       id: id,
       date: date,
       hour: hour,
@@ -57,7 +57,7 @@ export function EditFood() {
         type: editType,
         description: editDescription,
       });
-      navigation.navigate("home");
+      navigate("home");
     } catch (error) {
       console.log(error);
     }

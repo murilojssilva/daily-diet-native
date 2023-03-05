@@ -3,9 +3,9 @@ import { Button } from "../Button";
 import { NewFoodContainer, NewFoodTitle } from "./styles";
 
 export function NewFood() {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   function handleOpenAddNewFood() {
-    navigation.navigate("new_food");
+    navigate("new_food");
   }
   return (
     <NewFoodContainer>

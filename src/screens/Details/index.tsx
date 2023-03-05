@@ -22,19 +22,19 @@ import { foodRemoveByName } from "../../storage/food/foodRemove";
 import { Alert } from "react-native";
 
 export function Details() {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   function handleBackHome() {
-    navigation.navigate("home");
+    navigate("home");
   }
 
   const route = useRoute();
-  const { date, hour, name, type, description } =
+  const { id, date, hour, name, type, description } =
     route.params as FoodStorageDTO;
 
-  async function foodRemove(name: string) {
+  async function foodRemove(id: string) {
     try {
-      await foodRemoveByName(name);
-      navigation.navigate("home");
+      await foodRemoveByName(id);
+      navigate("home");
     } catch (error) {
       console.log(error);
       Alert.alert("Remover tarefa", "Não foi possíver remover a tarefa");
@@ -83,7 +83,8 @@ export function Details() {
             text="Editar refeição"
             icon="edit-3"
             onPress={() =>
-              navigation.navigate("edit_food", {
+              navigate("edit_food", {
+                id: id,
                 date: date,
                 hour: hour,
                 name: name,

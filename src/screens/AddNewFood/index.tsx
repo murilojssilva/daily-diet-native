@@ -23,13 +23,18 @@ import { InputDivider } from "../../components/InputDivider";
 export function AddNewFood() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [hour, setHour] = useState("");
+  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [hour, setHour] = useState(
+    `${new Date()
+      .getHours()
+      .toString()
+      .padStart(2, "0")}:${new Date().getMinutes()}`
+  );
   const [type, setType] = useState<"healthy" | "unhealthy">("healthy");
 
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   function handleBackHome() {
-    navigation.navigate("home");
+    navigate("home");
   }
 
   async function handleAddFood() {
@@ -42,7 +47,7 @@ export function AddNewFood() {
         hour,
         type,
       });
-      navigation.navigate("feedback", { type });
+      navigate("feedback", { type });
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +90,7 @@ export function AddNewFood() {
                 onChangeText={setHour}
                 value={hour}
                 placeholder="00:00"
+                keyboardType="numeric"
               />
             </AddNewFoodItem>
           </AddNewFoodDivider>

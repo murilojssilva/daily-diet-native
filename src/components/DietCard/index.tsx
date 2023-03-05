@@ -16,10 +16,10 @@ interface DietCardProps {
 
 export function DietCard({ level, percent }: DietCardProps) {
   const { colors } = useTheme();
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   function handleOpenNewScreen() {
-    navigation.navigate("statistics");
+    navigate("statistics");
   }
 
   return (

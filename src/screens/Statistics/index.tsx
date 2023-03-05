@@ -8,10 +8,10 @@ import { FoodsContext } from "../../contexts/FoodsContexts";
 
 export function Statistics() {
   const { percent } = useContext(FoodsContext);
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   function handleBackOption() {
-    navigation.navigate("home");
+    navigate("home");
   }
   return (
     <StatisticsContainer>

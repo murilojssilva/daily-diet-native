@@ -16,14 +16,14 @@ interface FoodCardProps {
 }
 
 export function FoodCard({ data }: FoodCardProps) {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   return (
     <FoodCardContainer>
       <FoodDay>{data.date}</FoodDay>
       <FoodCardContent
         onPress={() =>
-          navigation.navigate("details", {
+          navigate("details", {
             id: data.id,
             date: data.date,
             hour: data.hour,

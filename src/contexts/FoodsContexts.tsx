@@ -30,9 +30,13 @@ export function FoodsProvider({ children }: FoodsProviderProps) {
         const data = await foodsGetAll();
         setFoods(data);
         setPercent(
-          100 *
-            (foods.filter((food) => food.type === "healthy").length /
-              foods.length)
+          parseFloat(
+            (
+              100 *
+              (foods.filter((food) => food.type === "healthy").length /
+                foods.length)
+            ).toFixed(2)
+          )
         );
         let bestSequence = 0,
           currentSequence = 0;
