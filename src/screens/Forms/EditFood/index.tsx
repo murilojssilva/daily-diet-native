@@ -1,23 +1,23 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { ButtonType } from "../../components/ButtonType";
-import { Button } from "../../components/Button";
+import { ButtonType } from "../../../components/ButtonType";
+import { Button } from "../../../components/Button";
 import {
-  EditFoodContainer,
-  EditFoodContent,
-  EditFoodDivider,
-  EditFoodForm,
-  EditFoodHeader,
-  EditFoodHeaderIcon,
-  EditFoodHeaderTitle,
-  EditFoodItem,
-  EditFoodTitle,
-} from "./styles";
+  FormContainer,
+  FormContent,
+  FormDivider,
+  FormForm,
+  FormHeader,
+  FormHeaderIcon,
+  FormHeaderTitle,
+  FormItem,
+  FormTitle,
+} from "../styles";
 import { useState } from "react";
-import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
-import { foodEdit } from "../../storage/food/foodEdit";
-import { Textarea } from "../../components/Textarea";
-import { Input } from "../../components/Input";
-import { InputDivider } from "../../components/InputDivider";
+import { FoodStorageDTO } from "../../../storage/food/foodStorageDTO";
+import { foodEdit } from "../../../storage/food/foodEdit";
+import { Textarea } from "../../../components/Textarea";
+import { Input } from "../../../components/Input";
+import { InputDivider } from "../../../components/InputDivider";
 
 export function EditFood() {
   const route = useRoute();
@@ -63,44 +63,44 @@ export function EditFood() {
     }
   }
   return (
-    <EditFoodContainer>
-      <EditFoodHeader>
-        <EditFoodHeaderIcon name="arrow-left" onPress={handleBackHome} />
-        <EditFoodHeaderTitle>Editar refeição</EditFoodHeaderTitle>
-        <EditFoodHeaderTitle></EditFoodHeaderTitle>
-      </EditFoodHeader>
-      <EditFoodContent>
-        <EditFoodForm>
-          <EditFoodItem>
-            <EditFoodTitle>Nome</EditFoodTitle>
+    <FormContainer>
+      <FormHeader>
+        <FormHeaderIcon name="arrow-left" onPress={handleBackHome} />
+        <FormHeaderTitle>Editar refeição</FormHeaderTitle>
+        <FormHeaderTitle></FormHeaderTitle>
+      </FormHeader>
+      <FormContent>
+        <FormForm>
+          <FormItem>
+            <FormTitle>Nome</FormTitle>
             <Input onChangeText={setName} value={editName} />
-          </EditFoodItem>
-          <EditFoodItem>
-            <EditFoodTitle>Descrição</EditFoodTitle>
+          </FormItem>
+          <FormItem>
+            <FormTitle>Descrição</FormTitle>
 
             <Textarea onChangeText={setDescription} value={editDescription} />
-          </EditFoodItem>
-          <EditFoodDivider>
-            <EditFoodItem>
-              <EditFoodTitle>Data</EditFoodTitle>
+          </FormItem>
+          <FormDivider>
+            <FormItem>
+              <FormTitle>Data</FormTitle>
               <InputDivider
                 onChangeText={setDate}
                 value={editDate}
                 placeholder="00/00/0000"
               />
-            </EditFoodItem>
-            <EditFoodItem>
-              <EditFoodTitle>Hora</EditFoodTitle>
+            </FormItem>
+            <FormItem>
+              <FormTitle>Hora</FormTitle>
               <InputDivider
                 onChangeText={setHour}
                 value={editHour}
                 placeholder="00:00"
               />
-            </EditFoodItem>
-          </EditFoodDivider>
-          <EditFoodItem>
-            <EditFoodTitle>Está dentro da dieta?</EditFoodTitle>
-            <EditFoodDivider>
+            </FormItem>
+          </FormDivider>
+          <FormItem>
+            <FormTitle>Está dentro da dieta?</FormTitle>
+            <FormDivider>
               <ButtonType
                 type="healthy"
                 onPress={() => handleFoodType("healthy")}
@@ -113,11 +113,11 @@ export function EditFood() {
                 text="Não"
                 isActive={editType === "unhealthy"}
               />
-            </EditFoodDivider>
-          </EditFoodItem>
-        </EditFoodForm>
+            </FormDivider>
+          </FormItem>
+        </FormForm>
         <Button text="Editar refeição" onPress={() => handleEditFood()} />
-      </EditFoodContent>
-    </EditFoodContainer>
+      </FormContent>
+    </FormContainer>
   );
 }

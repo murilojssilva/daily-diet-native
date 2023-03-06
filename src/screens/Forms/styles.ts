@@ -1,15 +1,14 @@
 import styled from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
-import { Dimensions } from "react-native";
 
-export const EditFoodContainer = styled.View`
+export const FormContainer = styled.View`
   flex: 1;
   padding: 20px 0;
   background-color: ${(props) => props.theme.colors.gray_400};
 `;
 
-export const EditFoodHeader = styled.View`
+export const FormHeader = styled.View`
   flex-direction: row;
   height: ${RFValue(100)}px;
   align-items: center;
@@ -17,48 +16,45 @@ export const EditFoodHeader = styled.View`
   padding: 5px;
 `;
 
-export const EditFoodHeaderIcon = styled(Feather)`
+export const FormHeaderIcon = styled(Feather)`
   font-size: ${RFValue(22)}px;
   color: ${(props) => props.theme.colors.gray_700};
 `;
 
-export const EditFoodHeaderTitle = styled.Text`
+export const FormHeaderTitle = styled.Text`
   font-size: ${RFValue(22)}px;
   font-family: ${(props) => props.theme.fonts.bold};
   color: ${(props) => props.theme.colors.gray_700};
 `;
 
-export const EditFoodContent = styled.View`
+export const FormContent = styled.View`
   flex: 1;
   padding: 20px;
   background-color: ${(props) => props.theme.colors.gray_100};
   flex-direction: column;
   justify-content: space-between;
-  margin-top: -20px;
-
+  margin: -20px 0;
   border-radius: 20px;
 `;
 
-export const EditFoodItem = styled.View`
+export const FormItem = styled.View`
   flex-direction: column;
   gap: 2px;
 `;
 
-export const EditFoodTitle = styled.Text`
+export const FormTitle = styled.Text`
   font-size: ${RFValue(16)}px;
   font-family: ${(props) => props.theme.fonts.bold};
   color: ${(props) => props.theme.colors.gray_700};
 `;
 
-export const EditFoodDivider = styled.View`
+export const FormDivider = styled.View`
   flex-direction: row;
-  gap: 5px;
   justify-content: center;
-  align-content: center;
+  gap: 5px;
 `;
 
-export const EditFoodForm = styled.View`
+export const FormForm = styled.View`
   gap: 20px;
-
   align-items: center;
 `;

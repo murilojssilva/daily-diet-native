@@ -1,24 +1,24 @@
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { ButtonType } from "../../components/ButtonType";
-import { Button } from "../../components/Button";
+import { ButtonType } from "../../../components/ButtonType";
+import { Button } from "../../../components/Button";
 import {
-  AddNewFoodContainer,
-  AddNewFoodContent,
-  AddNewFoodDivider,
-  AddNewFoodForm,
-  AddNewFoodHeader,
-  AddNewFoodHeaderIcon,
-  AddNewFoodHeaderTitle,
-  AddNewFoodItem,
-  AddNewFoodTitle,
-} from "./styles";
+  FormContainer,
+  FormContent,
+  FormDivider,
+  FormForm,
+  FormHeader,
+  FormHeaderIcon,
+  FormHeaderTitle,
+  FormItem,
+  FormTitle,
+} from "../styles";
 import uuid from "react-native-uuid";
 
-import { foodCreate } from "../../storage/food/foodCreate";
-import { Textarea } from "../../components/Textarea";
-import { Input } from "../../components/Input";
-import { InputDivider } from "../../components/InputDivider";
+import { foodCreate } from "../../../storage/food/foodCreate";
+import { Textarea } from "../../../components/Textarea";
+import { Input } from "../../../components/Input";
+import { InputDivider } from "../../../components/InputDivider";
 
 export function AddNewFood() {
   const [name, setName] = useState("");
@@ -58,45 +58,45 @@ export function AddNewFood() {
   }
 
   return (
-    <AddNewFoodContainer>
-      <AddNewFoodHeader>
-        <AddNewFoodHeaderIcon name="arrow-left" onPress={handleBackHome} />
-        <AddNewFoodHeaderTitle>Nova refeição</AddNewFoodHeaderTitle>
-        <AddNewFoodHeaderTitle></AddNewFoodHeaderTitle>
-      </AddNewFoodHeader>
-      <AddNewFoodContent>
-        <AddNewFoodForm>
-          <AddNewFoodItem>
-            <AddNewFoodTitle>Nome</AddNewFoodTitle>
+    <FormContainer>
+      <FormHeader>
+        <FormHeaderIcon name="arrow-left" onPress={handleBackHome} />
+        <FormHeaderTitle>Nova refeição</FormHeaderTitle>
+        <FormHeaderTitle></FormHeaderTitle>
+      </FormHeader>
+      <FormContent>
+        <FormForm>
+          <FormItem>
+            <FormTitle>Nome</FormTitle>
             <Input onChangeText={setName} value={name} />
-          </AddNewFoodItem>
-          <AddNewFoodItem>
-            <AddNewFoodTitle>Descrição</AddNewFoodTitle>
+          </FormItem>
+          <FormItem>
+            <FormTitle>Descrição</FormTitle>
             <Textarea onChangeText={setDescription} value={description} />
-          </AddNewFoodItem>
-          <AddNewFoodDivider>
-            <AddNewFoodItem>
-              <AddNewFoodTitle>Data</AddNewFoodTitle>
+          </FormItem>
+          <FormDivider>
+            <FormItem>
+              <FormTitle>Data</FormTitle>
               <InputDivider
                 onChangeText={setDate}
                 value={date}
                 placeholder="00/00/0000"
                 keyboardType="numeric"
               />
-            </AddNewFoodItem>
-            <AddNewFoodItem>
-              <AddNewFoodTitle>Hora</AddNewFoodTitle>
+            </FormItem>
+            <FormItem>
+              <FormTitle>Hora</FormTitle>
               <InputDivider
                 onChangeText={setHour}
                 value={hour}
                 placeholder="00:00"
                 keyboardType="numeric"
               />
-            </AddNewFoodItem>
-          </AddNewFoodDivider>
-          <AddNewFoodItem>
-            <AddNewFoodTitle>Está dentro da dieta?</AddNewFoodTitle>
-            <AddNewFoodDivider>
+            </FormItem>
+          </FormDivider>
+          <FormItem>
+            <FormTitle>Está dentro da dieta?</FormTitle>
+            <FormDivider>
               <ButtonType
                 type="healthy"
                 onPress={() => handleFoodType("healthy")}
@@ -109,11 +109,11 @@ export function AddNewFood() {
                 text="Não"
                 isActive={type === "unhealthy"}
               />
-            </AddNewFoodDivider>
-          </AddNewFoodItem>
-        </AddNewFoodForm>
+            </FormDivider>
+          </FormItem>
+        </FormForm>
         <Button text="Cadastrar refeição" onPress={() => handleAddFood()} />
-      </AddNewFoodContent>
-    </AddNewFoodContainer>
+      </FormContent>
+    </FormContainer>
   );
 }

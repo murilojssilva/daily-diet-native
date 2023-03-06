@@ -13,7 +13,6 @@ import theme from "./src/global/styles/theme";
 import { Routes } from "./src/routes";
 import { FoodsProvider } from "./src/contexts/FoodsContexts";
 import { useCallback, useEffect } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,44 +21,21 @@ export default function App() {
     NunitoSans_700Bold,
   });
 
-  useEffect(() => {
-    async function prepare() {
-      try {
-        await SplashScreen.preventAutoHideAsync();
-      } catch (e) {
-        console.warn(e);
-      }
-    }
-    prepare();
-  }, []);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView onLayout={onLayoutRootView}>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor="transparent"
-          translucent
-        />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
 
-        <FoodsProvider>
-          <Routes />
-        </FoodsProvider>
-      </SafeAreaView>
+      <FoodsProvider>
+        <Routes />
+      </FoodsProvider>
     </ThemeProvider>
   );
 }
