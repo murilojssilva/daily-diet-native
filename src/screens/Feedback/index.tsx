@@ -1,8 +1,10 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { Button } from "../../components/Button";
 import { FeedbackContainer, FeedbackText, FeedbackTitle } from "./styles";
-import HealthyImage from "../../assets/healthyFoodImage.svg";
-import UnhealthyImage from "../../assets/unhealtyFoodImage.svg";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
+
+import { Button } from "@components/Form/Button";
+import HealthyImage from "@assets/healthyFoodImage.svg";
+import UnhealthyImage from "@assets/unhealtyFoodImage.svg";
 
 type FeedbackParams = {
   type: "healthy" | "unhealthy";

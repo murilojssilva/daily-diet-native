@@ -6,8 +6,8 @@ import React, {
   useEffect,
   useLayoutEffect,
 } from "react";
-import { FoodStorageDTO } from "../storage/food/foodStorageDTO";
-import { foodsGetAll } from "../storage/food/foodsGetAll";
+import { FoodStorageDTO } from "@dtos/foodStorageDTO";
+import { foodsGetAll } from "@storage/food/foodsGetAll";
 
 interface IFoodContextProps {
   foods: FoodStorageDTO[];

@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FOOD_COLLECTION } from "../storageConfig";
 
 import { foodsGetAll } from "./foodsGetAll";
-import { FoodStorageDTO } from "./foodStorageDTO";
+import { FoodStorageDTO } from "@dtos/foodStorageDTO";
 
 export async function foodEdit(editFood: FoodStorageDTO) {
   try {

@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { StatisticsCard } from "../StatisticsCard";
+import { StatisticsCard } from "@components/StatisticsCard";
 import {
   GeneralStatisticsCardContent,
   GeneralStatisticsContainer,
   GeneralStatisticsTitle,
 } from "./styles";
-import { FoodsContext } from "../../contexts/FoodsContexts";
+import { FoodsContext } from "@contexts/FoodsContexts";
 
 export function GeneralStatistics() {
   const { foods, bestSequenceInDiet } = useContext(FoodsContext);

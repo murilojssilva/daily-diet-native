@@ -1,4 +1,4 @@
-import { Dimensions, TextInput, TextInputProps } from "react-native";
+import { Dimensions } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
@@ -10,5 +10,5 @@ export const TextareaContainer = styled.TextInput.attrs({
   border-width: 1px;
   padding: 20px;
   border-radius: 6px;
-  width: ${Dimensions.get("screen").width * 0.8};
+  width: ${Dimensions.get("screen").width * 0.8}px;
 `;

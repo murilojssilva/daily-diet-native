@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { DietCard } from "../../components/DietCard";
-import { Header } from "../../components/Header";
+
+import { DietCard } from "@components/DietCard";
+import { Header } from "@components/Header";
+import { NewFood } from "@components/NewFood";
+import { FoodList } from "@components/FoodList";
+import { FoodsContext } from "@contexts/FoodsContexts";
 import { HomeContainer } from "./styles";
-import { NewFood } from "../../components/NewFood";
-import { FoodList } from "../../components/FoodList";
-import { FoodsContext } from "../../contexts/FoodsContexts";
 
 export function Home() {
   const { percent } = useContext(FoodsContext);

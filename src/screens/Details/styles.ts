@@ -1,47 +1,64 @@
+import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
-import styled from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface DetailsTypeIconProps {
   type: "healthy" | "unhealthy";
 }
 
-export const DetailsContainer = styled.View`
+export const DetailsContainer = styled(SafeAreaView)`
   flex: 1;
 `;
 
 export const DetailsContent = styled.View`
   flex: 1;
   padding: 40px 20px;
-  background-color: ${(props) => props.theme.colors.gray_200};
+  background-color: ${({ theme }) => theme.colors.gray_200};
   margin-top: -20px;
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-between;
 `;
 
-export const DetailsName = styled.Text`
+export const TextColor = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray_700};
+  `}
+`;
+
+export const TextStyle = styled(TextColor)`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray_700};
+    font-family: ${theme.fonts.regular};
+  `}
+`;
+
+export const TitleStyle = styled(TextColor)`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray_700};
+    font-family: ${theme.fonts.bold};
+  `}
+`;
+
+export const DetailsName = styled(TitleStyle)`
   font-size: ${RFValue(22)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_700};
 `;
 
-export const DetailsDescription = styled.Text`
+export const DetailsDescription = styled(TextStyle)`
   font-size: ${RFValue(16)}px;
-  font-family: ${(props) => props.theme.fonts.regular};
-  color: ${(props) => props.theme.colors.gray_700};
 `;
 
-export const DetailsDateAndHourTitle = styled.Text`
+export const DetailsDateAndHourTitle = styled(TitleStyle)`
   font-size: ${RFValue(16)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_700};
 `;
 
-export const DetailsDateAndHourText = styled.Text`
+export const DetailsDateAndHourText = styled(TextStyle)`
   font-size: ${RFValue(16)}px;
-  font-family: ${(props) => props.theme.fonts.regular};
-  color: ${(props) => props.theme.colors.gray_700};
+`;
+
+export const DetailsTypeText = styled(TextStyle)`
+  font-size: ${RFValue(16)}px;
 `;
 
 export const DetailsTypeTag = styled.View`
@@ -50,7 +67,7 @@ export const DetailsTypeTag = styled.View`
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
-  background-color: ${(props) => props.theme.colors.gray_300};
+  background-color: ${({ theme }) => theme.colors.gray_300};
   border-radius: 100px;
   width: 50%;
 `;
@@ -59,16 +76,8 @@ export const DetailsTypeIcon = styled.View<DetailsTypeIconProps>`
   padding: 5px;
   align-self: center;
   border-radius: 6px;
-  background-color: ${(props) =>
-    props.type === "healthy"
-      ? props.theme.colors.green_dark
-      : props.theme.colors.red_dark};
-`;
-
-export const DetailsTypeText = styled.Text`
-  font-size: ${RFValue(16)}px;
-  font-family: ${(props) => props.theme.fonts.regular};
-  color: ${(props) => props.theme.colors.gray_700};
+  background-color: ${({ theme, type }) =>
+    type === "healthy" ? theme.colors.green_dark : theme.colors.red_dark};
 `;
 
 export const DetailsHeader = styled.View`
@@ -77,18 +86,16 @@ export const DetailsHeader = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: ${(props) => props.theme.colors.green_light};
+  background-color: ${({ theme }) => theme.colors.green_light};
 `;
 
 export const DetailsHeaderIcon = styled(Feather)`
   font-size: ${RFValue(20)}px;
-  color: ${(props) => props.theme.colors.gray_700};
+  color: ${({ theme }) => theme.colors.gray_700};
 `;
 
-export const DetailsHeaderTitle = styled.Text`
+export const DetailsHeaderTitle = styled(TitleStyle)`
   font-size: ${RFValue(20)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_700};
 `;
 
 export const DetailsItems = styled.View`

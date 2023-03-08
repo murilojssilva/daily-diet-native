@@ -13,7 +13,7 @@ export const EmptyFoodListIcon = styled(Feather)`
 `;
 
 export const EmptyFoodListText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(16)}px;
   text-align: center;
 `;

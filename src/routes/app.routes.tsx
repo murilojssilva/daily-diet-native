@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Statistics } from "../screens/Statistics";
-import { Home } from "../screens/Home";
-import { AddNewFood } from "../screens/Forms/AddNewFood";
-import { Details } from "../screens/Details";
-import { Feedback } from "../screens/Feedback";
-import { EditFood } from "../screens/Forms/EditFood";
+import { Statistics } from "@screens/Statistics";
+import { Home } from "@screens/Home";
+import { AddNewFood } from "@screens/Forms/AddNewFood";
+import { Details } from "@screens/Details";
+import { Feedback } from "@screens/Feedback";
+import { EditFood } from "@screens/Forms/EditFood";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

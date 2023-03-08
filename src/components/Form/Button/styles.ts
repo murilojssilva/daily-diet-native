@@ -1,26 +1,26 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Feather } from "@expo/vector-icons";
 
 export const ButtonContainer = styled.TouchableOpacity`
   border-radius: 8px;
-
   align-items: center;
   justify-content: center;
   padding: 15px;
   gap: 10px;
   flex-direction: row;
-  background-color: ${(props) => props.theme.colors.gray_600};
+  background-color: ${({ theme }) => theme.colors.gray_600};
 `;
 
 export const ButtonText = styled.Text`
   font-size: ${RFValue(14)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_0};
-  font-weight: bold;
+  ${({ theme }) => css`
+    font-family: ${theme.fonts.bold};
+    color: ${theme.colors.gray_0};
+  `};
 `;
 
 export const ButtonIcon = styled(Feather)`
-  color: ${(props) => props.theme.colors.gray_0};
+  color: ${({ theme }) => theme.colors.gray_0};
   font-size: ${RFValue(14)}px;
 `;

@@ -2,7 +2,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const HeaderContainer = styled.View`
-  height: ${RFValue(173)}px;
+  height: ${RFValue(150)}px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;

@@ -10,10 +10,8 @@ interface DietCardContainerProps {
 export const DietCardContainer = styled.TouchableOpacity<DietCardContainerProps>`
   padding: 20px 10px;
   margin: 10px;
-  background-color: ${(props) =>
-    props.level === "high"
-      ? props.theme.colors.green_light
-      : props.theme.colors.red_light};
+  background-color: ${({ level, theme }) =>
+    level === "high" ? theme.colors.green_light : theme.colors.red_light};
 
   border-radius: 6px;
 `;
@@ -31,10 +29,10 @@ export const DietCardContent = styled.View`
 
 export const DietCardPercent = styled.Text`
   font-size: ${RFValue(30)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
+  font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
 export const DietCardText = styled.Text`
-  font-family: ${(props) => props.theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(12)}px;
 `;

@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   DetailsContainer,
@@ -16,10 +17,9 @@ import {
   DetailsButtonsContainer,
   DetailsInfos,
 } from "./styles";
-import { Button } from "../../components/Button";
-import { FoodStorageDTO } from "../../storage/food/foodStorageDTO";
-import { foodRemoveByName } from "../../storage/food/foodRemove";
-import { Alert } from "react-native";
+import { Button } from "@components/Form/Button";
+import { FoodStorageDTO } from "@dtos/foodStorageDTO";
+import { foodRemoveByName } from "@storage/food/foodRemove";
 
 export function Details() {
   const { navigate } = useNavigation();

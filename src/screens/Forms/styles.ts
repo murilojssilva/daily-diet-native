@@ -1,11 +1,13 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const FormContainer = styled.View`
+export const FormContainer = styled(SafeAreaView)`
   flex: 1;
+  background-color: ${({ theme }) => theme.colors.gray_400};
   padding: 20px 0;
-  background-color: ${(props) => props.theme.colors.gray_400};
+  margin: -30px 0;
 `;
 
 export const FormHeader = styled.View`
@@ -18,19 +20,24 @@ export const FormHeader = styled.View`
 
 export const FormHeaderIcon = styled(Feather)`
   font-size: ${RFValue(22)}px;
-  color: ${(props) => props.theme.colors.gray_700};
+  color: ${({ theme }) => theme.colors.gray_700};
 `;
 
-export const FormHeaderTitle = styled.Text`
+export const TitleStyle = styled.Text`
+  ${({ theme }) => css`
+    font-family: ${theme.fonts.bold};
+    color: ${theme.colors.gray_700};
+  `};
+`;
+
+export const FormHeaderTitle = styled(TitleStyle)`
   font-size: ${RFValue(22)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_700};
 `;
 
 export const FormContent = styled.View`
   flex: 1;
   padding: 20px;
-  background-color: ${(props) => props.theme.colors.gray_100};
+  background-color: ${({ theme }) => theme.colors.gray_100};
   flex-direction: column;
   justify-content: space-between;
   margin: -20px 0;
@@ -42,10 +49,8 @@ export const FormItem = styled.View`
   gap: 2px;
 `;
 
-export const FormTitle = styled.Text`
+export const FormTitle = styled(TitleStyle)`
   font-size: ${RFValue(16)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_700};
 `;
 
 export const FormDivider = styled.View`

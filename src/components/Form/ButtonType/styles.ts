@@ -1,6 +1,6 @@
+import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { RectButton } from "react-native-gesture-handler";
-import styled, { css } from "styled-components/native";
 
 interface ButtonTypeProps {
   type: "healthy" | "unhealthy";
@@ -16,28 +16,21 @@ export const ButtonTypeContainer = styled(RectButton)<ButtonTypeProps>`
 
   width: 47%;
   justify-content: center;
-  border-width: ${({ isActive }) => (isActive ? 1.5 : 0)}px;
+  border-radius: 6px;
   border-style: solid;
-  border-color: ${({ isActive, type, theme }) =>
-    isActive
+  ${({ isActive, type, theme }) => css`
+    border-width: ${isActive ? 1.5 : 0}px;
+    border-color: ${isActive
       ? type === "healthy"
         ? theme.colors.green_dark
         : theme.colors.red_dark
       : theme.colors.gray_200};
-  border-radius: 6px;
-
-  ${({ isActive, type }) =>
-    isActive &&
-    type === "healthy" &&
-    css`
-      background-color: ${(props) => props.theme.colors.green_light};
-    `}
-  ${({ isActive, type }) =>
-    isActive &&
-    type === "unhealthy" &&
-    css`
-      background-color: ${({ theme }) => theme.colors.red_light};
-    `}
+    background-color: ${isActive
+      ? type === "healthy"
+        ? theme.colors.green_light
+        : theme.colors.red_light
+      : theme.colors.gray_200};
+  `};
 `;
 
 export const ButtonTypeContent = styled(RectButton)`
@@ -52,14 +45,14 @@ export const ButtonTypeIcon = styled.View<ButtonTypeIconProps>`
   padding: 5px;
   align-self: center;
   border-radius: 6px;
-  background-color: ${(props) =>
-    props.type === "healthy"
-      ? props.theme.colors.green_dark
-      : props.theme.colors.red_dark};
+  background-color: ${({ theme, type }) =>
+    type === "healthy" ? theme.colors.green_dark : theme.colors.red_dark};
 `;
 
 export const ButtonTypeText = styled.Text`
   font-size: ${RFValue(16)}px;
-  font-family: ${(props) => props.theme.fonts.bold};
-  color: ${(props) => props.theme.colors.gray_700};
+  ${({ theme }) => css`
+    font-family: ${theme.fonts.bold};
+    color: ${theme.colors.gray_700};
+  `};
 `;

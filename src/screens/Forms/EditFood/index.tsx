@@ -1,6 +1,5 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { ButtonType } from "../../../components/ButtonType";
-import { Button } from "../../../components/Button";
+import { useState } from "react";
+
 import {
   FormContainer,
   FormContent,
@@ -12,12 +11,19 @@ import {
   FormItem,
   FormTitle,
 } from "../styles";
-import { useState } from "react";
-import { FoodStorageDTO } from "../../../storage/food/foodStorageDTO";
-import { foodEdit } from "../../../storage/food/foodEdit";
-import { Textarea } from "../../../components/Textarea";
-import { Input } from "../../../components/Input";
-import { InputDivider } from "../../../components/InputDivider";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
+
+import { FoodStorageDTO } from "@dtos/foodStorageDTO";
+import { foodEdit } from "@storage/food/foodEdit";
+import { Textarea } from "@components/Form/Textarea";
+import { Input } from "@components/Form/Input";
+import { ButtonType } from "@components/Form/ButtonType";
+import { Button } from "@components/Form/Button";
+
+import { Masks } from "react-native-mask-input";
+import { hourFormat } from "@utils/formatter";
+import { InputForm } from "@components/Form/InputForm";
 
 export function EditFood() {
   const route = useRoute();
@@ -73,7 +79,7 @@ export function EditFood() {
         <FormForm>
           <FormItem>
             <FormTitle>Nome</FormTitle>
-            <Input onChangeText={setName} value={editName} />
+            <InputForm onChangeText={setName} value={editName} />
           </FormItem>
           <FormItem>
             <FormTitle>Descrição</FormTitle>
@@ -83,18 +89,22 @@ export function EditFood() {
           <FormDivider>
             <FormItem>
               <FormTitle>Data</FormTitle>
-              <InputDivider
+              <InputForm
                 onChangeText={setDate}
                 value={editDate}
+                mask={Masks.DATE_DDMMYYYY}
                 placeholder="00/00/0000"
+                keyboardType="numeric"
               />
             </FormItem>
             <FormItem>
               <FormTitle>Hora</FormTitle>
-              <InputDivider
+              <InputForm
                 onChangeText={setHour}
                 value={editHour}
+                mask={hourFormat}
                 placeholder="00:00"
+                keyboardType="numeric"
               />
             </FormItem>
           </FormDivider>

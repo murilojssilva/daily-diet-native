@@ -1,6 +1,7 @@
-import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "react-native";
-import AppLoading from "expo-app-loading";
+
+import theme from "./src/styles/theme";
+import { ThemeProvider } from "styled-components";
 
 import {
   useFonts,
@@ -8,11 +9,10 @@ import {
   NunitoSans_600SemiBold,
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
-import { ThemeProvider } from "styled-components";
-import theme from "./src/global/styles/theme";
+
 import { Routes } from "./src/routes";
-import { FoodsProvider } from "./src/contexts/FoodsContexts";
-import { useCallback, useEffect } from "react";
+import { FoodsProvider } from "@contexts/FoodsContexts";
+import { Loading } from "@components/Loading";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,21 +21,14 @@ export default function App() {
     NunitoSans_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
   return (
     <ThemeProvider theme={theme}>
+      <FoodsProvider>{fontsLoaded ? <Routes /> : <Loading />}</FoodsProvider>
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
         translucent
       />
-
-      <FoodsProvider>
-        <Routes />
-      </FoodsProvider>
     </ThemeProvider>
   );
 }

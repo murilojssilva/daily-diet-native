@@ -3,6 +3,7 @@ import {
   StatisticsHeaderButton,
   StatisticsHeaderContainer,
   StatisticsHeaderIcon,
+  StatisticsHeaderInfos,
   StatisticsHeaderPercent,
   StatisticsHeaderText,
 } from "./styles";
@@ -19,19 +20,21 @@ export function StatisticsHeader({
 }: StatisticsHeaderProps) {
   const { colors } = useTheme();
   return (
-    <StatisticsHeaderContainer
-      backgroundColor={percent >= 70 ? colors.green_light : colors.red_light}
-    >
+    <StatisticsHeaderContainer>
       <StatisticsHeaderButton onPress={backOption}>
         <StatisticsHeaderIcon
           name="arrow-left"
           color={percent >= 70 ? colors.green_dark : colors.red_dark}
         />
       </StatisticsHeaderButton>
-      <StatisticsHeaderPercent>
-        {String(percent) === "NaN" ? "0" : percent}%
-      </StatisticsHeaderPercent>
-      <StatisticsHeaderText>das refeições dentro da dieta</StatisticsHeaderText>
+      <StatisticsHeaderInfos>
+        <StatisticsHeaderPercent>
+          {String(percent) === "NaN" ? "0" : percent}%
+        </StatisticsHeaderPercent>
+        <StatisticsHeaderText>
+          das refeições dentro da dieta
+        </StatisticsHeaderText>
+      </StatisticsHeaderInfos>
     </StatisticsHeaderContainer>
   );
 }
