@@ -12,33 +12,35 @@ import { useNavigation } from "@react-navigation/native";
 import { FoodStorageDTO } from "@dtos/foodStorageDTO";
 
 interface FoodCardProps {
-  data: FoodStorageDTO;
+  dataCard: FoodStorageDTO;
 }
 
-export function FoodCard({ data }: FoodCardProps) {
+export function FoodCard({ dataCard }: FoodCardProps) {
   const { navigate } = useNavigation();
 
   return (
     <FoodCardContainer>
-      <FoodDay>{data.date}</FoodDay>
+      <FoodDay>{dataCard.title}</FoodDay>
       <FoodCardContent
         onPress={() =>
           navigate("details", {
-            id: data.id,
-            date: data.date,
-            hour: data.hour,
-            name: data.name,
-            type: data.type,
-            description: data.description,
+            title: dataCard.title,
+            data: {
+              id: dataCard.data.id,
+              hour: dataCard.data.hour,
+              name: dataCard.data.name,
+              type: dataCard.data.type,
+              description: dataCard.data.description,
+            },
           })
         }
       >
         <FoodContent>
-          <FoodTime>{data.hour}</FoodTime>
+          <FoodTime>{dataCard.data.hour}</FoodTime>
           <FoodDivider />
-          <FoodTitle>{data.name}</FoodTitle>
+          <FoodTitle>{dataCard.data.name}</FoodTitle>
         </FoodContent>
-        <FoodType type={data.type} />
+        <FoodType type={dataCard.data.type} />
       </FoodCardContent>
     </FoodCardContainer>
   );

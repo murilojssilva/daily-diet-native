@@ -3,7 +3,6 @@ import React, {
   createContext,
   ReactNode,
   useCallback,
-  useEffect,
   useLayoutEffect,
 } from "react";
 import { FoodStorageDTO } from "@dtos/foodStorageDTO";
@@ -34,7 +33,7 @@ export function FoodsProvider({ children }: FoodsProviderProps) {
         parseFloat(
           (
             100 *
-            (foods.filter((food) => food.type === "healthy").length /
+            (foods.filter((food) => food.data.type === "healthy").length /
               foods.length)
           ).toFixed(2)
         )
@@ -43,7 +42,7 @@ export function FoodsProvider({ children }: FoodsProviderProps) {
         currentSequence = 0;
 
       foods.map((food) => {
-        if (food.type === "healthy") {
+        if (food.data.type === "healthy") {
           currentSequence++;
         } else {
           if (currentSequence > bestSequence) {

@@ -6,7 +6,6 @@
     "paths": {
       "@dtos/*": ["src/dtos/*"],
       "@assets/*": ["./src/assets/*"],
-      "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
       "@screens/*": ["./src/screens/*"],
       "@storage/*": ["./src/storage/*"],

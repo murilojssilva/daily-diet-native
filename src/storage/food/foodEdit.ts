@@ -11,13 +11,15 @@ export async function foodEdit(editFood: FoodStorageDTO) {
 
     const foods = storedFoods.map(
       (food) =>
-        food.id === editFood.id && {
-          id: editFood.id,
-          name: editFood.name,
-          type: editFood.type,
-          date: editFood.date,
-          hour: editFood.hour,
-          description: editFood.description,
+        food.data.id === editFood.data.id && {
+          title: editFood.title,
+          data: {
+            id: editFood.data.id,
+            name: editFood.data.name,
+            type: editFood.data.type,
+            hour: editFood.data.hour,
+            description: editFood.data.description,
+          },
         }
     );
 

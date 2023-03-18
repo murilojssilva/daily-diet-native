@@ -40,6 +40,14 @@ const schema = Yup.object().shape({
     .required("Hora é obrigatória"),
 });
 
+type FormDataProps = {
+  id: string;
+  name: string;
+  description: string;
+  type: "healthy" | "unhealthy";
+  hour: string;
+};
+
 export function AddNewFood() {
   const [type, setType] = useState<"healthy" | "unhealthy">("healthy");
 
@@ -47,7 +55,7 @@ export function AddNewFood() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<FoodStorageDTO>({ resolver: yupResolver(schema) });
 
   const { navigate } = useNavigation();
   function handleBackHome() {
@@ -59,18 +67,20 @@ export function AddNewFood() {
       if (!type) {
         Alert.alert("Informe se a refeição foi ou não saudável.");
       }
-      const data = {
-        id: String(uuid.v4()),
-        name: form.name,
-        description: form.description,
-        date: form.date,
-        hour: form.hour,
-        type: type,
+      const newData = {
+        title: form.title,
+        data: {
+          id: String(uuid.v4()),
+          name: form.data.name,
+          description: form.data.description,
+          hour: form.data.hour,
+          type: type,
+        },
       };
 
-      console.log(data);
+      console.log(newData);
 
-      await foodCreate(data);
+      await foodCreate(newData);
       navigate("feedback", { type });
     } catch (error) {
       console.log(error);
@@ -99,7 +109,7 @@ export function AddNewFood() {
                 type="name"
                 autoCapitalize="sentences"
                 autoCorrect={false}
-                error={errors.name && errors.name.message}
+                error={errors.data?.name?.message}
               />
             </FormItem>
             <FormItem>
@@ -109,7 +119,7 @@ export function AddNewFood() {
                 control={control}
                 autoCapitalize="words"
                 autoCorrect={false}
-                error={errors.description && errors.description.message}
+                error={errors.data?.description?.message}
               />
             </FormItem>
             <FormDivider>
@@ -122,7 +132,7 @@ export function AddNewFood() {
                   mask={Masks.DATE_DDMMYYYY}
                   placeholder="00/00/0000"
                   keyboardType="numeric"
-                  error={errors.date && errors.date.message}
+                  error={errors.title?.message}
                 />
               </FormItem>
               <FormItem>
@@ -134,7 +144,7 @@ export function AddNewFood() {
                   mask={hourFormat}
                   placeholder="00:00"
                   keyboardType="numeric"
-                  error={errors.hour && errors.hour.message}
+                  error={errors.data?.name?.message}
                 />
               </FormItem>
             </FormDivider>

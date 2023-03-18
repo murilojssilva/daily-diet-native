@@ -5,4 +5,6 @@ export const FoodListContainer = styled.View`
   padding: 20px;
 `;
 
-export const FoodListContent = styled.FlatList``;
+export const FoodListContent = styled.SectionList``;
+
+export const FoodListTitle = styled.Text``;

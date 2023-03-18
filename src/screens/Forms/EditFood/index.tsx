@@ -24,28 +24,50 @@ import { Button } from "@components/Form/Button";
 import { Masks } from "react-native-mask-input";
 import { hourFormat } from "@utils/formatter";
 import { InputForm } from "@components/Form/InputForm";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = Yup.object().shape({
+  name: Yup.string().required("Nome é obrigatório"),
+  description: Yup.string().required("Descrição é obrigatória"),
+  date: Yup.date()
+    .typeError("Insira uma data válida")
+    .required("Data é obrigatória"),
+  hour: Yup.string()
+    .length(5, "Insira um horário válido")
+    .matches(/(\d){2}:(\d){2}/, "Insira um horário válido")
+    .required("Hora é obrigatória"),
+});
 
 export function EditFood() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FoodStorageDTO>({ resolver: yupResolver(schema) });
+
   const route = useRoute();
-  const { id, name, description, date, hour, type } =
-    route.params as FoodStorageDTO;
+  const { title, data } = route.params as FoodStorageDTO;
 
   const [editName, setName] = useState(name);
 
-  const [editDescription, setDescription] = useState(description);
-  const [editDate, setDate] = useState(date);
-  const [editHour, setHour] = useState(hour);
-  const [editType, setType] = useState<"healthy" | "unhealthy">(type);
+  const [editDescription, setDescription] = useState(data.description);
+  const [editDate, setDate] = useState(title);
+  const [editHour, setHour] = useState(data.hour);
+  const [editType, setType] = useState<"healthy" | "unhealthy">(data.type);
 
   const { navigate } = useNavigation();
   function handleBackHome() {
     navigate("details", {
-      id: id,
-      date: date,
-      hour: hour,
-      name: name,
-      type: type,
-      description: description,
+      title: title,
+      data: {
+        id: data.id,
+        hour: data.hour,
+        name: data.name,
+        type: data.type,
+        description: data.description,
+      },
     });
   }
 
@@ -56,12 +78,14 @@ export function EditFood() {
   async function handleEditFood() {
     try {
       await foodEdit({
-        id: id,
-        date: editDate,
-        hour: editHour,
-        name: editName,
-        type: editType,
-        description: editDescription,
+        title: title,
+        data: {
+          id: data.id,
+          hour: data.hour,
+          name: data.name,
+          type: data.type,
+          description: data.description,
+        },
       });
       navigate("home");
     } catch (error) {
@@ -79,7 +103,14 @@ export function EditFood() {
         <FormForm>
           <FormItem>
             <FormTitle>Nome</FormTitle>
-            <InputForm onChangeText={setName} value={editName} />
+            <InputForm
+              name="name"
+              control={control}
+              type="name"
+              autoCapitalize="sentences"
+              autoCorrect={false}
+              error={errors.data?.name?.message}
+            />
           </FormItem>
           <FormItem>
             <FormTitle>Descrição</FormTitle>
@@ -90,6 +121,7 @@ export function EditFood() {
             <FormItem>
               <FormTitle>Data</FormTitle>
               <InputForm
+                control={control}
                 onChangeText={setDate}
                 value={editDate}
                 mask={Masks.DATE_DDMMYYYY}
@@ -100,6 +132,7 @@ export function EditFood() {
             <FormItem>
               <FormTitle>Hora</FormTitle>
               <InputForm
+                control={control}
                 onChangeText={setHour}
                 value={editHour}
                 mask={hourFormat}
@@ -126,7 +159,7 @@ export function EditFood() {
             </FormDivider>
           </FormItem>
         </FormForm>
-        <Button text="Editar refeição" onPress={() => handleEditFood()} />
+        <Button text="Editar refeição" onPress={handleSubmit(handleEditFood)} />
       </FormContent>
     </FormContainer>
   );

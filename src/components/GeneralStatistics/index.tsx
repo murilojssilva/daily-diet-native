@@ -25,12 +25,14 @@ export function GeneralStatistics() {
       />
       <GeneralStatisticsCardContent>
         <StatisticsCard
-          percent={foods.filter((food) => food.type === "healthy").length}
+          percent={foods.filter((food) => food.data.type === "healthy").length}
           text={`refeições dentro da${"\n"}dieta`}
           level="high"
         />
         <StatisticsCard
-          percent={foods.filter((food) => food.type === "unhealthy").length}
+          percent={
+            foods.filter((food) => food.data.type === "unhealthy").length
+          }
           text={`refeições fora da${"\n"}dieta`}
           level="low"
         />

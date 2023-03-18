@@ -9,7 +9,7 @@ import {
   Merge,
 } from "react-hook-form";
 
-interface InputFormProps extends MaskInputProps {
+export interface InputFormProps extends MaskInputProps {
   control: Control;
   name: string;
   type: "name" | "dateOrHour";

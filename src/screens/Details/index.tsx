@@ -28,8 +28,7 @@ export function Details() {
   }
 
   const route = useRoute();
-  const { id, date, hour, name, type, description } =
-    route.params as FoodStorageDTO;
+  const { title, data } = route.params as FoodStorageDTO;
 
   async function foodRemove(id: string) {
     try {
@@ -58,22 +57,22 @@ export function Details() {
       <DetailsContent>
         <DetailsInfos>
           <DetailsItems>
-            <DetailsName>{name}</DetailsName>
-            <DetailsDescription>{description}</DetailsDescription>
+            <DetailsName>{data.name}</DetailsName>
+            <DetailsDescription>{data.description}</DetailsDescription>
           </DetailsItems>
 
           <DetailsItems>
             <DetailsDateAndHourTitle>Data e hora</DetailsDateAndHourTitle>
             <DetailsDateAndHourText>
-              {date} às {hour}
+              {title} às {data.hour}
             </DetailsDateAndHourText>
           </DetailsItems>
 
           <DetailsItems>
             <DetailsTypeTag>
-              <DetailsTypeIcon type={type} />
+              <DetailsTypeIcon type={data.type} />
               <DetailsTypeText>
-                {type === "healthy" ? "dentro da dieta" : "fora da dieta"}
+                {data.type === "healthy" ? "dentro da dieta" : "fora da dieta"}
               </DetailsTypeText>
             </DetailsTypeTag>
           </DetailsItems>
@@ -84,19 +83,21 @@ export function Details() {
             icon="edit-3"
             onPress={() =>
               navigate("edit_food", {
-                id: id,
-                date: date,
-                hour: hour,
-                name: name,
-                type: type,
-                description: description,
+                title: title,
+                data: {
+                  id: data.id,
+                  hour: data.hour,
+                  name: data.name,
+                  type: data.type,
+                  description: data.description,
+                },
               })
             }
           />
           <Button
             text="Excluir refeição"
             icon="trash-2"
-            onPress={() => handleFoodRemove(name)}
+            onPress={() => handleFoodRemove(data.name)}
           />
         </DetailsButtonsContainer>
       </DetailsContent>
